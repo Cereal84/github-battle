@@ -6,6 +6,7 @@ score for each user, the one with the highest score wins. Theoretically, the
 score should (I said "should" because the formula for the score is quite simple)
  represent how much the user is active on GitHub. The idea came out looking 
 GitHub Awards so for who doesn't know it please check that site.
+Anyway if you want to try it go to [**GitHub Battle**](http://github-battle.com).
 
 
 How it is computed the score
