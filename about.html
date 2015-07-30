@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.2/mustache.min.js" ></script>-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Github-Battle</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden active">
+                        <a href="index.html"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img class="img-responsive" src="img/logo.png" alt="">
+                        <div class="intro-text">
+                            <span class="name">GitHub Battle</span>
+                            <span class="skills">Know who is the strongest</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="about">
+            <h2>About the project</h2>
+            <p>
+                This simple web-app allow you to challenge 2 Github users. The app compute the score for each user, the one
+                with the highest score wins. Theoretically, the score should (I said "should" because the formula for the score is quite
+                simple) represent how much the user is active on GitHub. The idea came out looking <a target="_blank" href="http://github-awards.com">GitHub Awards</a> so 
+                for who doesn't know it please check that site.
+            </p>
+    
+
+            <h2>How it is computed the score</h2>
+            <p>
+                The total score is the sum of all repo's scores. Each of them is computed as following:</br>
+                    <code>
+                        repo_score = stars + 1.5*forks + 0.2*watchers 
+                    </code>
+                </br>
+                As you can see the formula is quite simple and it does not get in account the contribution to external repos such as
+                pull request and ect.
+            </p>
+
+            <h2>Data</h2>
+            <p>
+                The data are retrieved on the fly doing some ajax request to the API of GitHub.
+            </p>
+
+            <h2>Contributions</h2>
+            <p>
+                Please feel free to send feedback, making question or contribute in some way to this project. You can find the code on <a target=" _blank" href="">GitHub</a>
+            </p>
+
+
+        </div>
+
+
+        <footer class="text-center">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-4">
+                            <h3>Author</h3>
+                            <p>Alessandro Pischedda</p>
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h3>Icon</h3>
+                            <p>The image of the fist is taken from <a href="http://cliparts.co/clipart/268754">Cliparts.co</a>.</p>
+                        </div>
+                        <div class="footer-col col-md-4">
+                            <h3>Theme</h3>
+                            <p>This site makes use of Freelance, an open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-below">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+
+    </body>
+</html>
