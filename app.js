@@ -42,7 +42,7 @@ function buildUserDiv(user_index)
         // understand the language used. I.e. if the repository is composed of various file
         // that are using different programming languages 
         if( lang == "null"){
-            div+= '<b>Others </b>';
+            div+= '<b>N/A </b>';
         }else{
             div+= '<b>'+lang+' </b>';
         }
