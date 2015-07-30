@@ -37,7 +37,15 @@ function buildUserDiv(user_index)
 
     for(var lang in players[user_index].languages){
         div+= '<span class="green_badge">';
-        div+= '<b>'+lang+' </b>';
+
+        // It may happen that the language can be 'null' because GitHub does not
+        // understand the language used. I.e. if the repository is composed of various file
+        // that are using different programming languages 
+        if( lang == "null"){
+            div+= '<b>Others </b>';
+        }else{
+            div+= '<b>'+lang+' </b>';
+        }
         div+= Number(players[user_index].languages[lang].score).toFixed(2);
         div+= '</span>';
     }
