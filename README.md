@@ -18,12 +18,17 @@ following:
 
 As you can see the formula is quite simple and it does not get in account the 
 contribution to external repos such as pull request and ect.
+Sometimes may appear an item called N/A in the different languages component;
+this is happens because fro some repository GitHub can not understand which 
+language is used (i.e. when a repository is composed of many different languages
+) and it put 'null' as value. So to not have the string 'null' I've used 'N/A'.
 
 Data
 ----
 
 The data are retrieved on the fly doing some ajax request to the API of GitHub.
 Nothing is stored.
+
 
 Author
 ------
