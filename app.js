@@ -12,6 +12,12 @@ function show_badges(index){
 }
 
 
+function show_tie(){
+
+
+}
+
+
 function buildUserDiv(user_index)
 {
     // use template and MustacheJS except for the badges part. For now just use js.
@@ -99,11 +105,13 @@ function fight(){
 
     }else{ // we've a tie/draw
 
-        $("#ribbon_text_1").text("DRAW");
+        $("#tie").fadeIn("slow");
+
+        /*$("#ribbon_text_1").text("DRAW");
         $("#ribbon_text_2").text("DRAW");
 
         $('#winner_ribbon_1').fadeIn(); 
-        $('#winner_ribbon_2').fadeIn(); 
+        $('#winner_ribbon_2').fadeIn(); */
     }    
 
 }
