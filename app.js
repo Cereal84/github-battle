@@ -5,16 +5,9 @@ var languages = [];
 var players_loaded = 0;
 
 
-
 function show_badges(index){
 
     $("#badges_"+index).fadeToggle("slow");
-}
-
-
-function show_tie(){
-
-
 }
 
 
@@ -42,6 +35,7 @@ function buildUserDiv(user_index)
                             <div id="badges_'+user_index+'" style="display:none;">';
 
     for(var lang in players[user_index].languages){
+
         div+= '<span class="green_badge">';
 
         // It may happen that the language can be 'null' because GitHub does not
@@ -54,23 +48,20 @@ function buildUserDiv(user_index)
         }
         div+= Number(players[user_index].languages[lang].score).toFixed(2);
         div+= '</span>';
+
     }
-
-
 
     div +=                  '</div>\
                         </div>\
                     </div>\
                 </div>';
 
-
-
     return div;
+
 }
 
 
 function fight(){
-
 
     $("#fight").fadeOut();
 
@@ -86,7 +77,6 @@ function fight(){
             score_2_tot += parseFloat(players[2].languages[languages[i]].score);
         
     }
-
 
     $('#score_1').text(score_1_tot.toFixed(2));
     $('#score_2').text(score_2_tot.toFixed(2));
@@ -120,7 +110,6 @@ function getUserInfo(player_number)
     if(username == "")
         return;
    
-
     players[player_number] = new Object();
     players[player_number].username = username;
     players[player_number].avatar_url = "";
@@ -134,7 +123,6 @@ function getUserInfo(player_number)
         players[player_number].github_page = data.html_url;
                 
     });
-
 
     $.getJSON("https://api.github.com/users/"+username+"/repos", function(data){
 
@@ -211,7 +199,5 @@ $(document).ready( function()
                            
             getUserInfo(2);
         });
-
-
 
 });
