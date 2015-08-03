@@ -11,52 +11,50 @@ function show_badges(index){
 }
 
 
-function buildUserDiv(user_index)
-{
-    // use template and MustacheJS except for the badges part. For now just use js.
-    var div =   '<div class="user_info text-center">\
-                    <div>\
-                        <div>\
-                            <a target="_blank" href="'+players[user_index].github_page+'">\
-                                <img class="img-circle avatar" id="avatar_'+players[user_index].username+'" src="'+players[user_index].avatar_url+'">\
-                            </a>\
-                        </div>\
-                    </div>\
-                        <div class="non-semantic-protector" id="winner_ribbon_'+user_index+'" style="display:none; margin-top: -80px;"> \
-                            <div class="ribbon">\
-                                <strong class="ribbon-content" id="ribbon_text_'+user_index+'">WINNER</strong>\
-                            </div>\
-                        </div>\
-                    <div>\
-                        <h2>'+players[user_index].username+'</h2>\
-                        <div id="score_container_'+user_index+'" style="display:none;">\
-                            <div class="score_title">SCORE</div>\
-                            <div onclick="show_badges('+user_index+')" class="score_value" id="score_'+user_index+'"></div>\
-                            <div id="badges_'+user_index+'" style="display:none;">';
+function fillBadges(user_index){
+
+    var badges = "";
 
     for(var lang in players[user_index].languages){
 
-        div+= '<span class="green_badge">';
+        badges+= '<span class="green_badge">';
 
         // It may happen that the language can be 'null' because GitHub does not
         // understand the language used. I.e. if the repository is composed of various file
         // that are using different programming languages 
         if( lang == "null"){
-            div+= '<b>N/A </b>';
+            badges += '<b>N/A </b>';
         }else{
-            div+= '<b>'+lang+' </b>';
+            badges += '<b>'+lang+' </b>';
         }
-        div+= Number(players[user_index].languages[lang].score).toFixed(2);
-        div+= '</span>';
+        badges += Number(players[user_index].languages[lang].score).toFixed(2);
+        badges += '</span>';
 
     }
 
-    div +=                  '</div>\
-                        </div>\
-                    </div>\
-                </div>';
+    $("#badges_"+user_index).append(badges);
 
-    return div;
+}
+
+
+function userTemplate(user_index)
+{ 
+
+    var source   = $("#user-template").html();
+    var template = Handlebars.compile(source);
+
+    var context = new Object();
+
+    context.user_index = user_index;
+    context.username = players[user_index].username;
+    context.avatar_url = players[user_index].avatar_url;
+    context.github_page = players[user_index].github_page;
+
+    var html    = template(context);
+
+    $('#player'+user_index).append( html );
+
+    fillBadges(user_index); 
 
 }
 
@@ -157,7 +155,8 @@ function getUserInfo(player_number)
 
         // hide the input part
         $("#input_"+player_number).hide();
-        $('#player'+player_number).append( buildUserDiv(player_number));
+        //$('#player'+player_number).append( buildUserDiv(player_number));
+        userTemplate(player_number);
 
         players_loaded+= 1;
         if(players_loaded == 2){
