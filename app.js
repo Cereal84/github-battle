@@ -11,13 +11,12 @@ function show_badges(index){
 }
 
 
-function fillBadges(user_index){
+// This helper is used by the template to render the "badges" (lang - score).
+Handlebars.registerHelper('list', function(items, options) {
+  var badges = "";
 
-    var badges = "";
-
-    for(var lang in players[user_index].languages){
-
-        badges+= '<span class="green_badge">';
+  for( var lang in items ) {
+    badges+= '<span class="green_badge">';
 
         // It may happen that the language can be 'null' because GitHub does not
         // understand the language used. I.e. if the repository is composed of various file
@@ -27,16 +26,15 @@ function fillBadges(user_index){
         }else{
             badges += '<b>'+lang+' </b>';
         }
-        badges += Number(players[user_index].languages[lang].score).toFixed(2);
+        badges += Number( items[lang].score).toFixed(2);
         badges += '</span>';
+  }
 
-    }
-
-    $("#badges_"+user_index).append(badges);
-
-}
+  return badges;
+});
 
 
+// build and render the user div. It uses handlebarsjs template
 function userTemplate(user_index)
 { 
 
@@ -49,12 +47,11 @@ function userTemplate(user_index)
     context.username = players[user_index].username;
     context.avatar_url = players[user_index].avatar_url;
     context.github_page = players[user_index].github_page;
+    context.languages = players[user_index].languages;
 
     var html    = template(context);
 
     $('#player'+user_index).append( html );
-
-    fillBadges(user_index); 
 
 }
 
