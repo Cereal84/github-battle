@@ -59,7 +59,7 @@ body {
 
 .reload_div{
     margin-top: 10px;
-    z-index: 20;
+    z-index: 30;
     width:100%;
     position:absolute;
 }
