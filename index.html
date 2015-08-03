@@ -6,7 +6,7 @@
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
         <script id="user-template" type="text/x-handlebars-template">
-            <div class="user_info text-center">
+            <div id="userinfo_{{user_index}}" class="user_info text-center">
                 <div>
                     <div>
                         <a target="_blank" href="{{github_page}}">
@@ -94,6 +94,10 @@
 
             <div id="tie" class="text-center fight_div" style="display:none;">
                     <img  class="tie_image" src="img/tie_result.png">
+            </div>
+
+            <div id="reload" class="text-center reload_div" style="display:none;" onclick="reload()">
+                    <h2 id="restart_btn" class="restart_btn">RESTART</h2>
             </div>
 
             <div class="half_left" id="player1">

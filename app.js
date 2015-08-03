@@ -11,6 +11,35 @@ function show_badges(index){
 }
 
 
+/* restart the page 
+        delete datas
+        reset the page
+*/
+function reload(){
+
+    delete players[1];
+    delete players[2];
+
+    // delete
+    $("#userinfo_1").remove();
+    $("#userinfo_2").remove();
+
+    // hide
+    $("#reload").hide();
+    $("#tie").hide();
+
+    // clean input
+    $("#player1_name").val("");
+    $("#player2_name").val("");
+
+    // show
+    $("#input_1").show();
+    $("#input_2").show();
+
+    players_loaded = 0;
+
+}
+
 // This helper is used by the template to render the "badges" (lang - score).
 Handlebars.registerHelper('list', function(items, options) {
   var badges = "";
@@ -93,6 +122,8 @@ function fight(){
         $("#tie").fadeIn("slow");
 
     }    
+
+    $("#reload").show();
 
 }
 
