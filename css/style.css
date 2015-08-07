@@ -48,9 +48,15 @@ body {
     width: 150px;
     height: 150px;
     margin-top: 10%;
+    cursor: pointer;
 
-};
+}
 
+
+.btn{
+    margin-top: 5px;
+    background: lightgray;
+}
 
 .tie_image{
     width: 25%;

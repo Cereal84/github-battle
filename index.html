@@ -59,6 +59,7 @@
         <div  id="users_container">
             <div id="fight" class="text-center fight_div" style="display:none;">
                     <img id="fight_button" class="fight_button" onclick="fight()" src="img/fist.png">
+                    <h2 style="color:red;">FIGHT</h2>
             </div>
 
             <div id="tie" class="text-center fight_div" style="display:none;">
@@ -69,12 +70,14 @@
                 <div class="user_input" id="input_1">
                     <label>Player 1</label></br>
                     <input type="text" class="form-control" id="player1_name" placeholder="insert GitHub Username"/>
+                    <button type="button" class="btn" onclick="getUserInfo(1)">Search</button>
                 </div>
             </div>
             <div class="center-block half_right" id="player2">
                 <div class="user_input" id="input_2">
                     <label>Player 2</label></br>
                     <input type="text" class="form-control" id="player2_name" placeholder="insert GitHub Username"/>
+                    <button class="btn" onclick="getUserInfo(2)">Search</button>
                 </div>
             </div>
 
