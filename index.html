@@ -4,6 +4,37 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+        <script id="user-template" type="text/x-handlebars-template">
+            <div id="userinfo_{{user_index}}" class="user_info text-center">
+                <div>
+                    <div>
+                        <a target="_blank" href="{{github_page}}">
+                            <img class="img-circle avatar" id="avatar_{{username}}" src="{{avatar_url}}">
+                        </a>
+                    </div>
+                </div>
+                    <div class="non-semantic-protector" id="winner_ribbon_{{user_index}}" style="display:none; margin-top: -80px;">
+                        <div class="ribbon">
+                            <strong class="ribbon-content" id="ribbon_text_{{user_index}}">WINNER</strong>
+                        </div>
+                    </div>
+                <div>
+                    <h2>{{username}}</h2>
+                    <div id="score_container_{{user_index}}" style="display:none;">
+                        <div class="score_title">SCORE</div>
+                        <div onclick="show_badges('{{user_index}}')" class="score_value" id="score_{{user_index}}"></div>
+                        <div id="badges_{{user_index}}" style="display:none;">
+                        {{{list languages}}}
+                        </div>
+                    </div>
+                </div>
+           </div>
+
+
+        </script>
+
+
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -64,6 +95,10 @@
 
             <div id="tie" class="text-center fight_div" style="display:none;">
                     <img  class="tie_image" src="img/tie_result.png">
+            </div>
+
+            <div id="reload" class="text-center reload_div" style="display:none;">
+                    <h2 id="restart_btn" class="restart_btn" onclick="reload()">RESTART</h2>
             </div>
 
             <div class="half_left" id="player1">

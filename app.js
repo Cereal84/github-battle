@@ -11,52 +11,76 @@ function show_badges(index){
 }
 
 
-function buildUserDiv(user_index)
-{
-    // use template and MustacheJS except for the badges part. For now just use js.
-    var div =   '<div class="user_info text-center">\
-                    <div>\
-                        <div>\
-                            <a target="_blank" href="'+players[user_index].github_page+'">\
-                                <img class="img-circle avatar" id="avatar_'+players[user_index].username+'" src="'+players[user_index].avatar_url+'">\
-                            </a>\
-                        </div>\
-                    </div>\
-                        <div class="non-semantic-protector" id="winner_ribbon_'+user_index+'" style="display:none; margin-top: -80px;"> \
-                            <div class="ribbon">\
-                                <strong class="ribbon-content" id="ribbon_text_'+user_index+'">WINNER</strong>\
-                            </div>\
-                        </div>\
-                    <div>\
-                        <h2>'+players[user_index].username+'</h2>\
-                        <div id="score_container_'+user_index+'" style="display:none;">\
-                            <div class="score_title">SCORE</div>\
-                            <div onclick="show_badges('+user_index+')" class="score_value" id="score_'+user_index+'"></div>\
-                            <div id="badges_'+user_index+'" style="display:none;">';
+/* restart the page 
+        delete datas
+        reset the page
+*/
+function reload(){
 
-    for(var lang in players[user_index].languages){
+    delete players[1];
+    delete players[2];
 
-        div+= '<span class="green_badge">';
+    // delete
+    $("#userinfo_1").remove();
+    $("#userinfo_2").remove();
+
+    // hide
+    $("#reload").hide();
+    $("#tie").hide();
+
+    // clean input
+    $("#player1_name").val("");
+    $("#player2_name").val("");
+
+    // show
+    $("#input_1").show();
+    $("#input_2").show();
+
+    players_loaded = 0;
+
+}
+
+// This helper is used by the template to render the "badges" (lang - score).
+Handlebars.registerHelper('list', function(items, options) {
+  var badges = "";
+
+  for( var lang in items ) {
+    badges+= '<span class="green_badge">';
 
         // It may happen that the language can be 'null' because GitHub does not
         // understand the language used. I.e. if the repository is composed of various file
         // that are using different programming languages 
         if( lang == "null"){
-            div+= '<b>N/A </b>';
+            badges += '<b>N/A </b>';
         }else{
-            div+= '<b>'+lang+' </b>';
+            badges += '<b>'+lang+' </b>';
         }
-        div+= Number(players[user_index].languages[lang].score).toFixed(2);
-        div+= '</span>';
+        badges += Number( items[lang].score).toFixed(2);
+        badges += '</span>';
+  }
 
-    }
+  return badges;
+});
 
-    div +=                  '</div>\
-                        </div>\
-                    </div>\
-                </div>';
 
-    return div;
+// build and render the user div. It uses handlebarsjs template
+function userTemplate(user_index)
+{ 
+
+    var source   = $("#user-template").html();
+    var template = Handlebars.compile(source);
+
+    var context = new Object();
+
+    context.user_index = user_index;
+    context.username = players[user_index].username;
+    context.avatar_url = players[user_index].avatar_url;
+    context.github_page = players[user_index].github_page;
+    context.languages = players[user_index].languages;
+
+    var html    = template(context);
+
+    $('#player'+user_index).append( html );
 
 }
 
@@ -98,6 +122,8 @@ function fight(){
         $("#tie").fadeIn("slow");
 
     }    
+
+    $("#reload").show();
 
 }
 
@@ -157,7 +183,8 @@ function getUserInfo(player_number)
 
         // hide the input part
         $("#input_"+player_number).hide();
-        $('#player'+player_number).append( buildUserDiv(player_number));
+        //$('#player'+player_number).append( buildUserDiv(player_number));
+        userTemplate(player_number);
 
         players_loaded+= 1;
         if(players_loaded == 2){

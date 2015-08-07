@@ -63,6 +63,20 @@ body {
     height:25%;
 }
 
+.reload_div{
+    margin-top: 10px;
+    z-index: 30;
+    width:100%;
+    position:absolute;
+}
+
+
+.restart_btn{
+    padding: 5px;
+    cursor: pointer;
+    margin: auto;
+}
+
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
