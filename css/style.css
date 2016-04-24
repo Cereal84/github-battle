@@ -24,7 +24,6 @@ body {
 .score_value{
     font-family: "Kimberley";
     font-size: 5em;
-    cursor: pointer;
 }
 
 .winner{
